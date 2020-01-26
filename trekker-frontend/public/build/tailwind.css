@@ -627,6 +627,18 @@ video {
   }
 }
 
+.characterz {
+  display: block;
+  text-decoration: none;
+  font-weight: 700;
+  color: #742a2a;
+  padding-left: 1.5rem;
+  padding-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom-width: 1px;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;

@@ -4,18 +4,80 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="/tailwind.css">
+  <link rel="stylesheet" href="./tailwind.css">
+  <script src="../src/index.js"></script>
   <title>Document</title>
 </head>
 
-<body>
-  <div class="bg-gray-500">
+<body class="font-sans leading-tight bg-gray-200">
+  <header class="bg-gray-900">
+    <div class="container mx-auto ">
+      <div class="flex justify-between items-center py-4 border-b-2 border-gray-700">
+        <div class="flex items-center my-3">
+          <img class="block h-12 w-12 mx-6"
+            src="https://course_report_production.s3.amazonaws.com/rich/rich_files/rich_files/999/s200/flatironschool.png"
+            alt="flatironschool logo">
+          <a href="#" class="flex items-center px-2 py-3 text-gray-500 hover:text-gray-100 antialiased">
+            <span class="">Peter Grant</span>
+            <svg class=" h-4 w-4 " fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+              <path d="M12.95 10.707l.707-.707L8 4.343 6.586 5.757 10.828 10l-4.242 4.243L8 15.657l4.95-4.95z" /></svg>
+          </a>
+          <a href="#" class="text-gray-500">Logged In</a>
+        </div>
+        <div>
+          <div class="flex items-center mx-6">
+            <a href="#" class="text-gray-500 px-4 hover:text-gray-100">Log Out</a>
+            <img class="block h-10 w-10 rounded-full border-2 border-gray-700"
+              src="https://avatars1.githubusercontent.com/u/50372930?s=460&v=4" alt="user avatar">
+          </div>
+        </div>
+      </div>
+      <div class="py-4">
+        <nav class="flex py-2 mb-20">
+          <a href="#" class="text-gray-500 font-semibold px-6 no-underline hover:text-gray-100">Characters</a>
+          <a href="#" class="text-gray-500 font-semibold px-4 no-underline hover:text-gray-100 ">Lego Kits</a>
+        </nav>
+      </div>
+    </div>
 
-    <h1 class="text-blue-600">this is the SAEDRGHDRissnsng</h1>
-    <p class="text-red-600">hello</p>
-  </div>
-  <section>
+  </header>
+  <section class=" ml-24 h-full  border-t border-gray-500">
 
+    <div class="  max-w-lg flex -mt-20 justify-between items-center bg-white rounded-lg shadow p-6">
+      <div class="flex-col mr-6">
+
+        <h1 class="font-semibold text-xl uppercase tracking-tight mb-2">add new character</h1>
+        <p>This is the form for adding a new character</p>
+        <p>add character fields here</p>
+        <p>add more fields</p>
+        <p>don't forget the submit button</p>
+
+      </div>
+      <div class="rounded-lg overflow-hidden w-2/3">
+        <img
+          src="https://vignette.wikia.nocookie.net/star-trek-the-next-generation/images/6/60/Enterprise_HD.jpeg/revision/latest?cb=20130504205123"
+          alt="star trek enterprise D">
+      </div>
+    </div>
+
+    <div class="flex flex-no-wrap mt-6 -mx-6">
+      <div class="w-xs flex-none px-6">
+        <div class="bg-white border overflow-hidden rounded-lg">
+          <a href="#" class="block bg-gray-100 text-md no-underline text-gray-500 pl-6 pr-4 py-2 border-b ">Jean-Luc
+            Picard</a>
+          <a href="#" class="block bg-gray-100 text-md no-underline text-gray-500 pl-6 pr-4 py-2 border-b ">James T
+            Kirk</a>
+          <a href="#" class="block bg-gray-100 text-md no-underline text-gray-500 pl-6 pr-4 py-2 border-b ">Benjamin
+            Sisco</a>
+          <a href="#" class="block bg-gray-100 text-md no-underline text-gray-500 pl-6 pr-4 py-2 border-b ">Katheryn
+            Janeway</a>
+          <a href="#" class="block bg-gray-100 text-md no-underline text-gray-500 pl-6 pr-4 py-2 border-b ">Q</a>
+          <a href="#" class="block bg-gray-100 text-md no-underline text-gray-500 pl-6 pr-4 py-2 border-b ">Ambassador
+            <a href="#" class="characterz">This is from characterz</a>
+
+        </div>
+      </div>
+    </div>
   </section>
 </body>
 

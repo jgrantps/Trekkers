@@ -1,3 +1,9 @@
 @tailwind base;
+
 @tailwind components;
+
+.characterz {
+  @apply block no-underline font-bold text-red-900 pl-6 pr-4 py-2 border-b;
+}
+
 @tailwind utilities;
