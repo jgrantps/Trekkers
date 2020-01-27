@@ -2,8 +2,16 @@
 
 @tailwind components;
 
-.characterz {
-  @apply block no-underline font-bold text-red-900 pl-6 pr-4 py-2 border-b;
+/* add your custom combos here! */
+.character-btn {
+  @apply block no-underline bg-gray-100 text-gray-500 pl-6 pr-4 py-2 border-b;
+}
+.character-btn:hover {
+    @apply bg-blue-300 border-l-2 border-b-0 border-black;
+}
+
+.character-btn:active {
+    @apply bg-red-400 text-black;
 }
 
 @tailwind utilities;
