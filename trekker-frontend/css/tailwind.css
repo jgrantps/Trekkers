@@ -3,6 +3,8 @@
 @tailwind components;
 
 /* add your custom combos here! */
+
+
 .character-btn {
   @apply block no-underline bg-gray-100 text-gray-500 pl-6 pr-4 py-2 border-b;
 }
@@ -13,5 +15,15 @@
 .character-btn:active {
     @apply bg-red-400 text-black;
 }
+
+.series-btn {
+  @apply border-b-2 border-gray-100;
+}
+
+.series-btn:hover {
+  @apply border-b-2 border-black bg-gray-500;
+}
+
+/* end of custom combos */
 
 @tailwind utilities;
