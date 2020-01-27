@@ -664,6 +664,12 @@ video {
   background-color: #a0aec0;
 }
 
+.series-btn-active {
+  border-bottom-width: 2px;
+  border-color: #000;
+  background-color: #a0aec0;
+}
+
 /* end of custom combos */
 
 .sr-only {

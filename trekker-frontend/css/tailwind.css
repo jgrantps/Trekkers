@@ -24,6 +24,10 @@
   @apply border-b-2 border-black bg-gray-500;
 }
 
+.series-btn-active {
+  @apply border-b-2 border-black bg-gray-500;
+}
+
 /* end of custom combos */
 
 @tailwind utilities;

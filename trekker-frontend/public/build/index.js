@@ -20,16 +20,18 @@ document.addEventListener('DOMContentLoaded', function(e) {
 
 function selectSeriesOnSubmit() {
     var seriesButtons = document.getElementsByClassName("series-btn");
+    
     for (let element of seriesButtons) {
         element.addEventListener("click", function(){
-            console.log(element.getAttribute("value"))
-        })
-    }
-
-    
-    // seriesButton.foreach( element => console.log(element.getAttribute('value')));
-        // console.log(this.getAttribute("value"));
-
-    // console.log(seriesButton)
-    // return seriesButton
+            var activeButtons = document.getElementsByClassName("series-btn-active")
+            
+            for (let activeButton of activeButtons) {
+                activeButton.setAttribute("class", "series-btn");
+            }
+            element.setAttribute("class", "series-btn-active");
+            console.log(this.getAttribute('value'));
+            // Take ^^ this and pass it into the fetch request to the Star Trek API.
+            
+    });
 }
+};
