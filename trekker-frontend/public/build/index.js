@@ -31,6 +31,10 @@ function selectSeriesOnSubmit() {
             element.setAttribute("class", "series-btn-active");
             console.log(this.getAttribute('value'));
             // Take ^^ this and pass it into the fetch request to the Star Trek API.
+            let buttonValue = this.getAttribute('value')
+            fetch(`http://localhost:3000/series/:${buttonValue}`)
+            .then(respone => response.json())
+            .then(series => console.log('@@series: ', series))
     });
 }
 };
