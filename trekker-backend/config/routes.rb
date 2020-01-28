@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :series
   resources :kits
   resources :gifts
   resources :characters
