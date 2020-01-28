@@ -31,7 +31,6 @@ function selectSeriesOnSubmit() {
             element.setAttribute("class", "series-btn-active");
             console.log(this.getAttribute('value'));
             // Take ^^ this and pass it into the fetch request to the Star Trek API.
-            
     });
 }
 };
