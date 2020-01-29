@@ -5,10 +5,17 @@ class SeriesController < ApplicationController
     end
 
     def show
-        selected_series = Series.find("id" => params{:id})
+        series = Series.find(seriesParams[:id].to_i)
+        render json: series.characters
+        # byebugs
+        # raise params.inspect
         
-        raise params.inspect
     end
     
+    private
+
+    def seriesParams
+    params.permit(:id)    
+    end
 
 end
