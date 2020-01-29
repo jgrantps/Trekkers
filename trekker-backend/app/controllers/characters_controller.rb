@@ -4,6 +4,8 @@ class CharactersController < ApplicationController
     end
 
     def show
+      character = Character.find(characterParams[:id].to_i)
+      render json: CharacterSerializer.new(character)
     end
 
     def create
@@ -14,5 +16,8 @@ class CharactersController < ApplicationController
 
     private
 
+    def characterParams
+      params.permit(:id)    
+      end
 
 end

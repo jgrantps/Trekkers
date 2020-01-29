@@ -6,10 +6,7 @@ class SeriesController < ApplicationController
 
     def show
         series = Series.find(seriesParams[:id].to_i)
-        render json: series.characters
-        # byebugs
-        # raise params.inspect
-        
+        render json: SeriesSerializer.new(series)        
     end
     
     private

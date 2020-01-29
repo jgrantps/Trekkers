@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  post "/login", to: "sessions#create"
+  post "/logout", to: "sessions#destroy"
+
+  get 'sessions/destroy'
   resources :series
   resources :kits
   resources :gifts

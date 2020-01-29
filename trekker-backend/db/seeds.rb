@@ -26,7 +26,7 @@ DATA = {
     ["Pavel Chekov", "Navigations Officer", "https://vignette.wikia.nocookie.net/memoryalpha/images/b/b2/Pavel_Chekov%2C_2268.jpg/revision/latest?cb=20090225005414&path-prefix=en", 1],
     ["Nyota Uhura", "Communications Officer", "http://www.treknews.net/wp-content/uploads/2019/12/nichelle-nichols-star-trek-87-birthday-750x480.jpg", 1],
    
-    ["Jean Luc Picard", "Capatain of the USS Enterprise-D", "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/star-trek-jean-luc-picard3-1547237309.jpg?crop=1xw:0.6574746008708273xh;center,top&resize=480:*", 2],
+    ["Jean Luc Picard", "Captain of the USS Enterprise-D", "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/star-trek-jean-luc-picard3-1547237309.jpg?crop=1xw:0.6574746008708273xh;center,top&resize=480:*", 2],
     ["William T Riker", "First Officer", "http://images2.fanpop.com/image/photos/9400000/Commander-William-T-Riker-star-trek-the-next-generation-9406645-1694-2560.jpg", 2],
     ["Data", "Chief Science Officer", "https://i.pinimg.com/originals/2d/89/23/2d892399223c7c408dbeea934de61be3.jpg", 2],
     ["Worf", "Chief Security Officer", "https://cnet4.cbsistatic.com/img/r-p-OqNgNZMOl62QZqWFWkgaQa0=/940x0/2016/09/02/41f02b67-d8ff-4179-8c32-a0f0c5bdfd7f/tng-worf00000993d.jpg", 2],
