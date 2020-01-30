@@ -45,9 +45,11 @@ function processLogin(user) {
 function showDashboard(user) {
   const welcomeModal = document.getElementById("sign-in")
   const mainPage = document.getElementById("main-page")
-
+  const nameSpace = document.getElementById("name-space")
   welcomeModal.setAttribute("class", "hidden")
   mainPage.setAttribute("class", "")
+nameSpace.innerText = user.data.attributes.name
+console.log(user.data.attributes.name)
 
 
 
