@@ -28,13 +28,16 @@ function handleOnUsersLogIn() {
 }
 
 function processLogin(user) {
-  console.log(user)
-  var id = user.data.id
-  
-  if ( isNaN(id) === false) {
-    showDashboard(user);
-  } else {
-    console.log("not logged in")
+  var alertButton = document.getElementById("alert-div");
+
+  if (user.message === "Login Failed, Please Try Again!") {
+    alertButton.setAttribute("class", "alert-wrapper")
+    alertButton.innerText = user.message
+  }
+  else {
+    alertButton.setAttribute("class", "hidden")
+    alertButton.innerText = ""
+    showDashboard(user); 
   }
 }
 
@@ -63,7 +66,19 @@ function handleOnUserSignup() {
 };
 
 function processSignUp(user) {
-  console.log(user);
+  
+  var alertButton = document.getElementById("alert-div");
+
+  if (user.reason === "error!") {
+    alertButton.setAttribute("class", "alert-wrapper")
+    alertButton.innerText = "Signup Error - Try Again!"
+    
+  }
+  else {
+    alertButton.setAttribute("class", "hidden")
+    alertButton.innerText = ""
+    showDashboard(user); 
+  }
 }
 
 

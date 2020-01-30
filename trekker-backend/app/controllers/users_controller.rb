@@ -9,13 +9,13 @@ class UsersController < ApplicationController
       session[:user_id] = user.id
       redirect_to user_path(user)
     else
-      render json: user.errors.as_json(full_messages: true)
+      render json: {main: user.errors.as_json(full_messages: true), reason: "error!"}
     end
   end
 
   def show
     user = User.find(userShowParams[:id])
-    render json: UserSerializer.new(user)
+    render json: UserSerializer.new(user), :methods => :message
   end
 
   private

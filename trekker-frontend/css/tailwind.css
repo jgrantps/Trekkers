@@ -40,6 +40,10 @@
   @apply fixed flex h-screen justify-center items-center bg-gray-900 w-full;
 }
 
+.alert-wrapper {
+  @apply border-2 border-red-300 font-bold uppercase rounded-lg bg-red-100 py-1 pl-2 my-3;
+}
+
 
 /* end of custom combos */
 

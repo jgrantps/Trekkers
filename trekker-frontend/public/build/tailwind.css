@@ -700,6 +700,20 @@ video {
   width: 100%;
 }
 
+.alert-wrapper {
+  border-width: 2px;
+  border-color: #feb2b2;
+  font-weight: 700;
+  text-transform: uppercase;
+  border-radius: 0.5rem;
+  background-color: #fff5f5;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  padding-left: 0.5rem;
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
 /* end of custom combos */
 
 .sr-only {
