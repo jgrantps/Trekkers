@@ -5,9 +5,13 @@ class UsersController < ApplicationController
   
   def create
     if User.find_by(:name => userParams[:name])
-      redirect_to user_path(current_user)
-    else
       redirect_to login_path
+
+    else
+      byebug
+      User.new(userParams)
+     
+      
     end   
   end
 
@@ -19,6 +23,7 @@ class UsersController < ApplicationController
   private
 
   def userParams
+    
     params.permit(:name, :password)
   end
 

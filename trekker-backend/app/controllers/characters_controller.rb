@@ -1,5 +1,8 @@
 class CharactersController < ApplicationController
 
+  before_action :authentication_required
+
+
     def index
     end
 

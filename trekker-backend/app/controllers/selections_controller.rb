@@ -1,5 +1,8 @@
 class SelectionsController < ApplicationController
 
+before_action :authentication_required
+
+
     def index
     end
 

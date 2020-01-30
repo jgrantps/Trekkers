@@ -1,14 +1,14 @@
 class SessionsController < ApplicationController
+  
+  
   def create
-    user = User.find_by(:name => sessionsParams[:name])
     
-   
-
+    user = User.find_by(:name => sessionsParams[:name])
     if user && user.authenticate(sessionsParams[:password])
       session[:user_id] = user.id
-     render json: {message: user}
+     render json: UserSerializer.new(user)
     else
-      render json: {message: user}
+      render json: {message: "failed to authenticate"}
     end
   end
 
@@ -19,7 +19,7 @@ class SessionsController < ApplicationController
   private
 
   def sessionsParams
-    params.permit(:name, :password)
+    params.require(:session).permit(:name, :password)
   end
 
 end

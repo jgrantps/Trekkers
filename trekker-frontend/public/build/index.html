@@ -17,12 +17,16 @@
     <div class="bg-white rounded-lg w-xl px-6 shadow">
       <h1 class="font-semibold pb-2 text-xl">Welcome to the Trekker Lego Party!</h1>
       <h2>Please sign up or sign in below:</h2>
-      <div>
-        <form id="sign-up-form" action="http://localhost:3000/users/new"><br>
-          Username: <input type="text" class="submit-btn" name="user_name"><br><br>
-          Password: <input type="text" class="submit-btn" name="user_password"><br><br>
-          <input class="submit-btn" type="submit" value="Submit">
-        </form>
+      <div class="my-2">
+        
+          <h2 class="font-semibold">Username:</h2><input type="text" id="login-name" class="submit-btn" name="user_name"><br><br>
+          
+           <h2 class="font-semibold">Password:</h2><input type="text" id="login-password" class="submit-btn" name="user_password"><br><br>
+          <div class=>
+            <input class="submit-btn mr-2" id="signup-btn" type="submit" value="Sign Up">
+            <input class="submit-btn" id="login-btn" type="submit" value="Log In">
+          </div>
+       
       </div>
     </div>
 
