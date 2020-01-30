@@ -15,24 +15,12 @@ console.log('JS being Read.')
 // const KITS_URL = `${BASE_URL}+/kits`
 
 document.addEventListener('DOMContentLoaded', function (e) {
-  const submittedName = document.getElementById("login-name").value
-  const submittedPassword = document.getElementById("login-password").value
-  const submitParams = {name: submittedName, password: submittedPassword}
-  
-  const configurationObject = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "Accept": "application/json"
-    },
-    body: JSON.stringify(submitParams)
-  }
-  console.log(configurationObject)
   selectSeriesOnSubmit();
   loadCharacters();
   handleOnCharacterSubmit();
-  handleOnUsersLogIn(configurationObject);
-  handleOnUserSignup(configurationObject);
+  handleOnUsersLogIn();
+  handleOnUserSignup();
+  handleOnUserLogOut();
 });
 
 function selectSeriesOnSubmit() {

@@ -1,6 +1,6 @@
 class SeriesController < ApplicationController
 
-before_action :authentication_required
+
 
     def index
         raise params.inspect

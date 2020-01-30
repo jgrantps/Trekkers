@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
-  
+   skip_before_action :verified_user, raise: false
+
   
   def create
     
@@ -8,12 +9,13 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
      render json: UserSerializer.new(user)
     else
-      render json: {message: "failed to authenticate"}
+      render json: {message: "Login Failed, Please Try Again!"}
     end
   end
 
   def destroy
     reset_session
+    render json: {message: "you are logged out"}
   end
 
   private

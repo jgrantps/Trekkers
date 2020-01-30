@@ -687,6 +687,19 @@ video {
   background-color: #edf2f7;
 }
 
+.entry-modal {
+  position: fixed;
+  display: -webkit-box;
+  display: flex;
+  height: 100vh;
+  -webkit-box-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+          align-items: center;
+  background-color: #1a202c;
+  width: 100%;
+}
+
 /* end of custom combos */
 
 .sr-only {

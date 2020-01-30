@@ -1,30 +1,31 @@
 class UsersController < ApplicationController
-
+ 
   def index
   end
   
   def create
-    if User.find_by(:name => userParams[:name])
-      redirect_to login_path
-
+     user = User.create(userParams)
+    if user.save
+      session[:user_id] = user.id
+      redirect_to user_path(user)
     else
-      byebug
-      User.new(userParams)
-     
-      
-    end   
+      render json: user.errors.as_json(full_messages: true)
+    end
   end
 
   def show
-    @characters = current_user.characters
-    render json: CharacterSerializer.new(@characters)
+    user = User.find(userShowParams[:id])
+    render json: UserSerializer.new(user)
   end
 
   private
 
   def userParams
-    
     params.permit(:name, :password)
+  end
+
+  def userShowParams
+    params.permit(:id)
   end
 
 end
