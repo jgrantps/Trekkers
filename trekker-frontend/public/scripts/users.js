@@ -24,20 +24,22 @@ function handleOnUsersLogIn() {
     fetch(`http://localhost:3000/login`, configurationParams())
     .then(response => response.json())
     .then(user => processLogin(user));
+    
   });
 }
 
 function processLogin(user) {
   var alertButton = document.getElementById("alert-div");
-
   if (user.message === "Login Failed, Please Try Again!") {
     alertButton.setAttribute("class", "alert-wrapper")
     alertButton.innerText = user.message
   }
   else {
+    USER = user;
     alertButton.setAttribute("class", "hidden")
     alertButton.innerText = ""
     showDashboard(user); 
+    loadCharacters(user);
   }
 }
 
@@ -48,12 +50,10 @@ function showDashboard(user) {
   const nameSpace = document.getElementById("name-space")
   welcomeModal.setAttribute("class", "hidden")
   mainPage.setAttribute("class", "")
-nameSpace.innerText = user.data.attributes.name
-console.log(user.data.attributes.name)
-
-
-
+  nameSpace.innerText = user.data.attributes.name
 };
+
+
 
 function handleOnUserSignup() {
   const signUpBtn = document.getElementById("signup-btn")
@@ -106,6 +106,12 @@ function logoutScreen(user) {
   } else {
     console.log("error!  you need to fix your logout!")
   }
+};
 
-
-}
+function loadCharacters(user) {
+var characterSet = user.data.attributes.characters
+  for (character of characterSet) {
+    let newCharacter = new Character(character);
+    updateUserSelectionList(newCharacter);
+  }
+};

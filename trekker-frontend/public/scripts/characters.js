@@ -8,6 +8,7 @@ class Character {
   }
 }
 
+
 function retreiveShow(show) {
   var characterSet = show.data.attributes.characters;
   var seriesImage = show.data.attributes.image_URL;
@@ -49,6 +50,7 @@ function handleOnCharacterSubmit() {
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     e.stopPropagation();
+    
     let selectedCharacterId = e.target['character-select'].value;
     // console.log(selectedCharacterId);
 
@@ -62,5 +64,43 @@ function handleOnCharacterSubmit() {
 function postCharacter(element) {
   var cName = element.data.attributes.name;
   const nameList = document.getElementById('saved-name-list')
-  console.log(nameList)
+  addCharacterToUser(element)
+}
+
+function configuredCharacterParams(character) {
+  var characterPackage = {character, USER}
+  
+  const configurationObject = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    },
+    body: JSON.stringify(characterPackage)
+  }
+  
+  return configurationObject;
+};
+
+
+// fetch function to turn selected character in the the user's selection.
+function addCharacterToUser(character) {
+ 
+  console.log(configuredCharacterParams(character))
+  
+  fetch(`http://localhost:3000/selections`, configuredCharacterParams(character))
+      .then(response => response.json())
+      .then(resp => updateUserSelectionList(resp.character));
+  };
+
+
+function updateUserSelectionList(input) {
+  const nameList = document.getElementById('saved-name-list');
+  var newOption = document.createElement('a');
+  let newCharacter = new Character(input);
+  
+  newOption.setAttribute('value', newCharacter.id);
+  newOption.setAttribute('class', 'character-btn');
+  newOption.innerText = `${newCharacter.name}`;
+  nameList.insertBefore(newOption, nameList.lastChild);
 }

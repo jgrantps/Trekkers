@@ -1,12 +1,14 @@
 class SessionsController < ApplicationController
-   skip_before_action :verified_user, raise: false
+  #  skip_before_action :verified_user, raise: false
 
   
   def create
     
-    user = User.find_by(:name => sessionsParams[:name])
-    if user && user.authenticate(sessionsParams[:password])
-      session[:user_id] = user.id
+    user = User.find_by(sessionsParams)
+    # if user && user.authenticate(sessionsParams[:password])
+    #   session[:user_id] = user.id
+    if !!user
+      # byebug
      render json: UserSerializer.new(user)
     else
       render json: {message: "Login Failed, Please Try Again!"}
