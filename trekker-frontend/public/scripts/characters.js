@@ -100,7 +100,21 @@ function updateUserSelectionList(input) {
   let newCharacter = new Character(input);
   
   newOption.setAttribute('value', newCharacter.id);
-  newOption.setAttribute('class', 'character-btn');
+  newOption.setAttribute('class', 'select-character character-btn');
   newOption.innerText = `${newCharacter.name}`;
+  console.log(newOption)
+  setCharacterSheetAccess(newOption, newCharacter);
   nameList.insertBefore(newOption, nameList.lastChild);
+}
+
+
+function setCharacterSheetAccess(newOption, newCharacter) {
+  newOption.addEventListener('click', function(e){
+    var nameSpot = document.getElementById("character-sheet-name")
+    var seriesSpot = document.getElementById("character-sheet-series")
+    var descriptionSpot = document.getElementById("character-sheet-description")
+    nameSpot.innerText = newCharacter.name;
+    seriesSpot.innerText = "enter the series here"
+    descriptionSpot.innerText = newCharacter.name;
+  })
 }

@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
   handleOnUsersLogIn();
   handleOnUserSignup();
   handleOnUserLogOut();
+  
 });
 
 function selectSeriesOnSubmit() {
