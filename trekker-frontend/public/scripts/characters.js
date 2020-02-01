@@ -5,6 +5,7 @@ class Character {
     this.id = characterData.id;
     this.name = characterData.name;
     this.description = characterData.description;
+    this.image_URL = characterData.image_URL
   }
 }
 
@@ -110,11 +111,14 @@ function updateUserSelectionList(input) {
 
 function setCharacterSheetAccess(newOption, newCharacter) {
   newOption.addEventListener('click', function(e){
+    var imageSpot = document.getElementById("character-image") 
     var nameSpot = document.getElementById("character-sheet-name")
     var seriesSpot = document.getElementById("character-sheet-series")
     var descriptionSpot = document.getElementById("character-sheet-description")
     nameSpot.innerText = newCharacter.name;
-    seriesSpot.innerText = "enter the series here"
-    descriptionSpot.innerText = newCharacter.name;
+    console.log(newCharacter)
+    imageSpot.setAttribute("src", newCharacter.image_URL);
+    // seriesSpot.innerText = "enter the series here"
+    descriptionSpot.innerHTML = newCharacter.description;
   })
 }
