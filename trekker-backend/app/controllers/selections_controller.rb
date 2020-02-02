@@ -23,11 +23,21 @@ class SelectionsController < ApplicationController
     end
 
     def destroy
+        byebug
     end
 
     private
     def selectionParams
         params.require(:character).permit(data: [:id])[:data][:id].to_i
     end
+
+    def destroySelectionParams
+        dsp = params.permit(:id, USER: [data:[:id]])
+        selectionID = dsp[:id]
+        userID = dsp[:USER][:data][:id]
+        destroyParams = {:user => userID.to_i, :selection => selectionID.to_i}
+        destroyParams
+    end
+
 
 end

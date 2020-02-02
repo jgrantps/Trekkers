@@ -53,7 +53,6 @@ function handleOnCharacterSubmit() {
     e.stopPropagation();
     
     let selectedCharacterId = e.target['character-select'].value;
-    // console.log(selectedCharacterId);
 
     fetch(`http://localhost:3000/characters/${selectedCharacterId}`)
       .then(response => response.json())
@@ -86,9 +85,6 @@ function configuredCharacterParams(character) {
 
 // fetch function to turn selected character in the the user's selection.
 function addCharacterToUser(character) {
- 
-  console.log(configuredCharacterParams(character))
-  
   fetch(`http://localhost:3000/selections`, configuredCharacterParams(character))
       .then(response => response.json())
       .then(resp => updateUserSelectionList(resp.character));
@@ -103,7 +99,6 @@ function updateUserSelectionList(input) {
   newOption.setAttribute('value', newCharacter.id);
   newOption.setAttribute('class', 'select-character character-btn');
   newOption.innerText = `${newCharacter.name}`;
-  console.log(newOption)
   setCharacterSheetAccess(newOption, newCharacter);
   nameList.insertBefore(newOption, nameList.lastChild);
 }
@@ -115,10 +110,37 @@ function setCharacterSheetAccess(newOption, newCharacter) {
     var nameSpot = document.getElementById("character-sheet-name")
     var seriesSpot = document.getElementById("character-sheet-series")
     var descriptionSpot = document.getElementById("character-sheet-description")
+    var deleteButton = document.getElementById("character-delete")
     nameSpot.innerText = newCharacter.name;
-    console.log(newCharacter)
+    deleteButton.setAttribute('value', newCharacter.id)
     imageSpot.setAttribute("src", newCharacter.image_URL);
     // seriesSpot.innerText = "enter the series here"
     descriptionSpot.innerHTML = newCharacter.description;
   })
 }
+
+function handleOnSelectionDelete() {
+  var deleteButton = document.getElementById("character-delete");
+  deleteButton.addEventListener('click', function(){
+    var selectionId = deleteButton.getAttribute('value');
+    console.log(selectionId)
+    fetch(`http://localhost:3000/selections/${selectionId}`, configuredDeleteSelectionParams())
+      .then(response => response.json())
+      .then(resp => console.log(resp));
+  });
+}
+
+function configuredDeleteSelectionParams() {
+  var deletionPackage = {USER}
+  
+  const configurationObject = {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    },
+    body: JSON.stringify(deletionPackage)
+  }
+  
+  return configurationObject;
+};

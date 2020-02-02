@@ -18,6 +18,7 @@ var USER;
 document.addEventListener('DOMContentLoaded', function (e) {
   selectSeriesOnSubmit();
   handleOnCharacterSubmit();
+  handleOnSelectionDelete();
   handleOnUsersLogIn();
   handleOnUserSignup();
   handleOnUserLogOut();
