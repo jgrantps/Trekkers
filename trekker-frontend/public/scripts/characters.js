@@ -1,14 +1,4 @@
-// Contains all functions and classes for manipulating Character objects.
-
-class Character {
-  constructor(characterData) {
-    console.log(characterData);
-    this.id = characterData.id;
-    this.name = characterData.name;
-    this.description = characterData.description;
-    this.image_URL = characterData.image_URL
-  }
-}
+// Contains all functions for manipulating Character objects.
 
 
 function retreiveShow(show) {
@@ -98,10 +88,8 @@ function updateUserSelectionList(input) {
   const nameList = document.getElementById('saved-name-list');
   var newOption = document.createElement('a');
   let newSelection = new Selection(input);
-  let newSelectionCharacter = newSelection.karacter;
-  console.log(newSelection)
-  console.log(newSelectionCharacter)
- 
+  let newSelectionCharacter = newSelection.character;
+  // console.log(newSelection.user)
   
   newOption.setAttribute('character_id', newSelection.character_id);
   newOption.setAttribute('selection_id', newSelection.id);

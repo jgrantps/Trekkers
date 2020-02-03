@@ -23,7 +23,6 @@ function handleOnUsersLogIn() {
     e.stopPropagation();
     fetch(`http://localhost:3000/login`, configurationParams())
     .then(response => response.json())
-    // .then(user => console.log(user));
     .then(user => processLogin(user));
     
     
@@ -37,7 +36,8 @@ function processLogin(user) {
     alertButton.innerText = user.message
   }
   else {
-    USER = user;
+    USER = new User(user.data);
+    console.log(USER.name)
     alertButton.setAttribute("class", "hidden")
     alertButton.innerText = ""
     showDashboard(user); 
@@ -109,17 +109,6 @@ function logoutScreen(user) {
     console.log("error!  you need to fix your logout!")
   }
 };
-
-// function loadCharacters(user) {
-//   console.log(user)
-//   var characterSet = user.data.attributes.characters
-//   for (character of characterSet) {
-//     console.log(character)
-//     let newCharacter = new Character(character);
-//     updateUserSelectionList(character);
-//   }
-// };
-
 
 function loadCharacters(user) {
   var selectionSet = user.data.attributes.selections
