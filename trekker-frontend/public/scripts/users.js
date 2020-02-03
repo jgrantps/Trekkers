@@ -37,11 +37,11 @@ function processLogin(user) {
   }
   else {
     USER = new User(user.data);
-    console.log(USER.name)
+    
     alertButton.setAttribute("class", "hidden")
     alertButton.innerText = ""
     showDashboard(user); 
-    loadCharacters(user);
+    loadCharactersAndSelections(user);
   }
 }
 
@@ -110,9 +110,15 @@ function logoutScreen(user) {
   }
 };
 
-function loadCharacters(user) {
-  var selectionSet = user.data.attributes.selections
-  for (selection of selectionSet) {
+function loadCharactersAndSelections(input) {
+  var selections;
+  if (input.data === undefined) {
+    selections = input.selections
+  }else{
+     selections = input.data.attributes.selections;
+  }
+  // var characters = input.data.attributes.characters;
+  for (selection of selections) {
     updateUserSelectionList(selection);
   };
 }

@@ -8,7 +8,6 @@ class SelectionsController < ApplicationController
     end
 
     def create
-        
         new_selection = Selection.new(:user_id => currentUser.id, :character_id => selectionParams)
         character = Character.find(selectionParams)
         if new_selection.save 
@@ -23,7 +22,13 @@ class SelectionsController < ApplicationController
     end
 
     def destroy
-        byebug
+        selection = Selection.find(destroySelectionParams[:id])
+        
+        if selection.delete
+            render json:{"message": "Success!"}
+        else
+            render json:{"message": "Not able to destroy!"}
+        end
     end
 
     private
@@ -32,11 +37,7 @@ class SelectionsController < ApplicationController
     end
 
     def destroySelectionParams
-        dsp = params.permit(:id, USER: [data:[:id]])
-        selectionID = dsp[:id]
-        userID = dsp[:USER][:data][:id]
-        destroyParams = {:user => userID.to_i, :selection => selectionID.to_i}
-        destroyParams
+        params.permit(:id)
     end
 
 

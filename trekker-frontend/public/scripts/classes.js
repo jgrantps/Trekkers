@@ -6,29 +6,30 @@ class User {
         this.name = input.attributes.name
         
             }       
-        
-    
     get characters() {
        return Character.allIncludedCharacters;
-    
     }
 
     get selections() {
         return Selection.allIncludedSelections;
     }
+
+    filterCharacterByName(i) {
+        return this.characters.filter(element => element.name === i)
+    }
+    filterSelectionByCharacterName(i) {
+        return this.selections.filter(element => element.character.name === i);
+    }
 }
-
-// var buildNestedSelections = function(input) 
-
-
-
+ 
 let includedSelections = [];
 class Selection {
     constructor(input) {
         this.id = input.id;
         this.user_id = input.user_id;
         this.character_id = input.character_id;
-        this.character = new Character(input.character)
+       
+        this.character = (USER.characters.find(element => element.id === this.character_id)) ? (USER.characters.find(element => element.id === this.character_id)) : new Character(input.character)
         this.user = USER  
         // ^^ USER is a global variable and is USER = new User(input.data)   
         this.save();
@@ -38,7 +39,11 @@ class Selection {
     }    
 
     static get allIncludedSelections() {
-        return includedSelections;
+        return includedSelections; 
+    }
+    get delete() {
+        var index = includedSelections.indexOf(this);
+        includedSelections.splice(index, 1);
     }    
 }    
 

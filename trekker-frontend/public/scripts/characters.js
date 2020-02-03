@@ -89,7 +89,7 @@ function updateUserSelectionList(input) {
   var newOption = document.createElement('a');
   let newSelection = new Selection(input);
   let newSelectionCharacter = newSelection.character;
-  // console.log(newSelection.user)
+  
   
   newOption.setAttribute('character_id', newSelection.character_id);
   newOption.setAttribute('selection_id', newSelection.id);
@@ -98,29 +98,6 @@ function updateUserSelectionList(input) {
   setCharacterSheetAccess(newOption, newSelectionCharacter);
   nameList.insertBefore(newOption, nameList.lastChild);
 }
-
-// function updateUserSelectionList(input) {
-//   console.log(input)
-
-//   var selectionSet = input.data.attributes.selections;
-
-//   for (selection of selectionSet) {
-//     const nameList = document.getElementById('saved-name-list');
-//     var newOption = document.createElement('a');
-    
-//     let newSelection = new Selection(selection)
-    
-//   }
-//   let newCharacter = new Character(input.character);
-//   let newSelection = new Selection(input.selection);
-  
-//   newOption.setAttribute('character_id', newCharacter.id);
-//   newOption.setAttribute('selection_id', newSelection.id);
-//   newOption.setAttribute('class', 'select-character character-btn');
-//   newOption.innerText = `${newCharacter.name}`;
-//   setCharacterSheetAccess(newOption, newCharacter);
-//   nameList.insertBefore(newOption, nameList.lastChild);
-// }
 
 
 function setCharacterSheetAccess(newOption, newCharacter) {
@@ -131,7 +108,8 @@ function setCharacterSheetAccess(newOption, newCharacter) {
     var descriptionSpot = document.getElementById("character-sheet-description")
     var deleteButton = document.getElementById("character-delete")
     nameSpot.innerText = newCharacter.name;
-    deleteButton.setAttribute('value', newCharacter.id)
+    
+    deleteButton.setAttribute('value', parseInt(newOption.getAttribute('selection_id')))
     imageSpot.setAttribute("src", newCharacter.image_URL);
     // seriesSpot.innerText = "enter the series here"
     descriptionSpot.innerHTML = newCharacter.description;
@@ -142,15 +120,14 @@ function handleOnSelectionDelete() {
   var deleteButton = document.getElementById("character-delete");
   deleteButton.addEventListener('click', function(){
     var selectionId = deleteButton.getAttribute('value');
-    console.log(selectionId)
-    fetch(`http://localhost:3000/selections/${selectionId}`, configuredDeleteSelectionParams())
+    fetch(`http://localhost:3000/selections/${selectionId}`, configuredDeleteSelectionParams(selectionId))
       .then(response => response.json())
-      .then(resp => console.log(resp));
+      .then(resp => deleteSelection(resp, selectionId));
   });
 }
 
-function configuredDeleteSelectionParams() {
-  var deletionPackage = {USER}
+function configuredDeleteSelectionParams(id) {
+  var deletionPackage = {USER, id}
   
   const configurationObject = {
     method: "DELETE",
@@ -163,3 +140,11 @@ function configuredDeleteSelectionParams() {
   
   return configurationObject;
 };
+
+function deleteSelection(resp, selectionId) {
+  
+  var selection = includedSelections.find(element => element.id == selectionId);
+  selection.delete
+  loadCharactersAndSelections(USER)
+console.log(includedSelections);
+}

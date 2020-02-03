@@ -10,8 +10,8 @@ class ApplicationController < ActionController::API
 
   
   def userParams
-    input = params.require(:USER).permit(data: [:id])
-    output = input[:data][:id].to_i
+    input = params.require(:USER).permit(:id)
+    output = input[:id].to_i
     output
   end
 
