@@ -1,10 +1,21 @@
 class UserSerializer
   include FastJsonapi::ObjectSerializer
-  has_many :characters
-  attributes :name, :characters
+  has_many :selections
+  has_many :characters, through: :selections
+  has_many :series, through: :characters
+  
+  attributes :name
 
-  # attribute :is_logged_in do |user, params|
-  #   params[:user].logged_in ? true : false
-  # end
+  attribute :selections do |object|
+    object.build_selections_params
+  end
+
+  attribute :series do |object|
+    object.series_unique
+  end
+
 
 end
+
+
+# {:user =>{:id => 1, :name => "annie", :selections=>{:id=> 1, :user_id => 1, :character_id => 3, :character => {:id => 3, :name => "captain Jean Luc Picard", :description => "captain", :series_id => 3}, {:id => 2, }}}

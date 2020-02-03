@@ -23,7 +23,9 @@ function handleOnUsersLogIn() {
     e.stopPropagation();
     fetch(`http://localhost:3000/login`, configurationParams())
     .then(response => response.json())
+    // .then(user => console.log(user));
     .then(user => processLogin(user));
+    
     
   });
 }
@@ -108,10 +110,20 @@ function logoutScreen(user) {
   }
 };
 
+// function loadCharacters(user) {
+//   console.log(user)
+//   var characterSet = user.data.attributes.characters
+//   for (character of characterSet) {
+//     console.log(character)
+//     let newCharacter = new Character(character);
+//     updateUserSelectionList(character);
+//   }
+// };
+
+
 function loadCharacters(user) {
-var characterSet = user.data.attributes.characters
-  for (character of characterSet) {
-    let newCharacter = new Character(character);
-    updateUserSelectionList(newCharacter);
-  }
-};
+  var selectionSet = user.data.attributes.selections
+  for (selection of selectionSet) {
+    updateUserSelectionList(selection);
+  };
+}

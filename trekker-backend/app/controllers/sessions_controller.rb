@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     # if user && user.authenticate(sessionsParams[:password])
     #   session[:user_id] = user.id
     if !!user
-      # byebug
+       
      render json: UserSerializer.new(user)
     else
       render json: {message: "Login Failed, Please Try Again!"}

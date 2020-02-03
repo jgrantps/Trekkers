@@ -2,6 +2,7 @@
 
 class Character {
   constructor(characterData) {
+    console.log(characterData);
     this.id = characterData.id;
     this.name = characterData.name;
     this.description = characterData.description;
@@ -87,21 +88,51 @@ function configuredCharacterParams(character) {
 function addCharacterToUser(character) {
   fetch(`http://localhost:3000/selections`, configuredCharacterParams(character))
       .then(response => response.json())
-      .then(resp => updateUserSelectionList(resp.character));
+      // .then(resp => console.log(resp));
+      .then(resp => updateUserSelectionList(resp));
   };
 
 
 function updateUserSelectionList(input) {
+  
   const nameList = document.getElementById('saved-name-list');
   var newOption = document.createElement('a');
-  let newCharacter = new Character(input);
+  let newSelection = new Selection(input);
+  let newSelectionCharacter = newSelection.karacter;
+  console.log(newSelection)
+  console.log(newSelectionCharacter)
+ 
   
-  newOption.setAttribute('value', newCharacter.id);
+  newOption.setAttribute('character_id', newSelection.character_id);
+  newOption.setAttribute('selection_id', newSelection.id);
   newOption.setAttribute('class', 'select-character character-btn');
-  newOption.innerText = `${newCharacter.name}`;
-  setCharacterSheetAccess(newOption, newCharacter);
+  newOption.innerText = `${newSelectionCharacter.name}`;
+  setCharacterSheetAccess(newOption, newSelectionCharacter);
   nameList.insertBefore(newOption, nameList.lastChild);
 }
+
+// function updateUserSelectionList(input) {
+//   console.log(input)
+
+//   var selectionSet = input.data.attributes.selections;
+
+//   for (selection of selectionSet) {
+//     const nameList = document.getElementById('saved-name-list');
+//     var newOption = document.createElement('a');
+    
+//     let newSelection = new Selection(selection)
+    
+//   }
+//   let newCharacter = new Character(input.character);
+//   let newSelection = new Selection(input.selection);
+  
+//   newOption.setAttribute('character_id', newCharacter.id);
+//   newOption.setAttribute('selection_id', newSelection.id);
+//   newOption.setAttribute('class', 'select-character character-btn');
+//   newOption.innerText = `${newCharacter.name}`;
+//   setCharacterSheetAccess(newOption, newCharacter);
+//   nameList.insertBefore(newOption, nameList.lastChild);
+// }
 
 
 function setCharacterSheetAccess(newOption, newCharacter) {
