@@ -84,18 +84,26 @@ function addCharacterToUser(character) {
 
 
 function updateUserSelectionList(input) {
-  
+  console.log(input)
   const nameList = document.getElementById('saved-name-list');
   var newOption = document.createElement('a');
-  let newSelection = new Selection(input);
-  let newSelectionCharacter = newSelection.character;
+  let newSelection;
+
+  if (input.character_id === undefined) {
+    newSelection = new Selection(input.selection);
+    console.log(newSelection)
+  }else{
+    newSelection = input;
+  }
+
+  let newCharacter = newSelection.character;
   
   
   newOption.setAttribute('character_id', newSelection.character_id);
   newOption.setAttribute('selection_id', newSelection.id);
   newOption.setAttribute('class', 'select-character character-btn');
-  newOption.innerText = `${newSelectionCharacter.name}`;
-  setCharacterSheetAccess(newOption, newSelectionCharacter);
+  newOption.innerText = `${newCharacter.name}`;
+  setCharacterSheetAccess(newOption, newCharacter);
   nameList.insertBefore(newOption, nameList.lastChild);
 }
 
@@ -122,7 +130,7 @@ function handleOnSelectionDelete() {
     var selectionId = deleteButton.getAttribute('value');
     fetch(`http://localhost:3000/selections/${selectionId}`, configuredDeleteSelectionParams(selectionId))
       .then(response => response.json())
-      .then(resp => deleteSelection(resp, selectionId));
+      .then(resp => deleteSelection(resp));
   });
 }
 
@@ -141,10 +149,10 @@ function configuredDeleteSelectionParams(id) {
   return configurationObject;
 };
 
-function deleteSelection(resp, selectionId) {
-  
-  var selection = includedSelections.find(element => element.id == selectionId);
-  selection.delete
-  loadCharactersAndSelections(USER)
-console.log(includedSelections);
+function deleteSelection(resp) {
+  console.log(resp)
+  deletedSelection = resp.id;
+  var selection = USER.selections.find(element => element.id == deletedSelection);
+  selection.delete    
+   loadCharactersAndSelections(USER)
 }

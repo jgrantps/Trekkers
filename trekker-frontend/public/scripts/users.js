@@ -113,12 +113,16 @@ function logoutScreen(user) {
 function loadCharactersAndSelections(input) {
   var selections;
   if (input.data === undefined) {
-    selections = input.selections
+    selections = USER.selections
+    console.log(selections);
   }else{
      selections = input.data.attributes.selections;
   }
   // var characters = input.data.attributes.characters;
+  const nameList = document.getElementById('saved-name-list');
+  nameList.innerHTML = '';
   for (selection of selections) {
-    updateUserSelectionList(selection);
+     updateUserSelectionList(selection);
   };
+  console.log(USER.selections)
 }

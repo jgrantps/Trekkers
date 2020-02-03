@@ -22,10 +22,11 @@ class SelectionsController < ApplicationController
     end
 
     def destroy
-        selection = Selection.find(destroySelectionParams[:id])
         
+        selection = Selection.find(destroySelectionParams[:id])
+        deadId = selection.id
         if selection.delete
-            render json:{"message": "Success!"}
+            render json:{"message": "Success!", "id": deadId}
         else
             render json:{"message": "Not able to destroy!"}
         end
