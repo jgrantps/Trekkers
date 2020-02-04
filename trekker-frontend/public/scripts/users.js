@@ -21,8 +21,7 @@ function handleOnUsersLogIn() {
   logInBtn.addEventListener('click', function(e) {
     e.preventDefault();
     e.stopPropagation();
-    fetch(`http://localhost:3000/login`, configurationParams())
-    .then(response => response.json())
+    const login = api.post(`/login`, configurationParams())
     .then(user => processLogin(user));
     
     
@@ -63,9 +62,8 @@ function handleOnUserSignup() {
     e.preventDefault();
     e.stopPropagation();
 
-    fetch(`http://localhost:3000/users`, configurationParams())
-      .then(response => response.json())
-      .then(user => processSignUp(user));
+    const signUp = api.post(`/users`, configurationParams())
+    .then(user => processSignUp(user));
   });
 };
 
@@ -91,8 +89,7 @@ function handleOnUserLogOut() {
   logOutBtn.addEventListener('click', function(e) {
     e.preventDefault();
     e.stopPropagation();
-    fetch(`http://localhost:3000/logout`, configurationParams())
-    .then(response => response.json())
+    const logOut = api.post(`/logout`, configurationParams())
     .then(user => logoutScreen(user));
   });
 }

@@ -44,9 +44,7 @@ function handleOnCharacterSubmit() {
     e.stopPropagation();
     
     let selectedCharacterId = e.target['character-select'].value;
-
-    fetch(`http://localhost:3000/characters/${selectedCharacterId}`)
-      .then(response => response.json())
+    const characterFetch = api.get(`/characters/${selectedCharacterId}`)
       .then(character => postCharacter(character));
   });
 }
@@ -76,10 +74,8 @@ function configuredCharacterParams(character) {
 
 // fetch function to turn selected character in the the user's selection.
 function addCharacterToUser(character) {
-  fetch(`http://localhost:3000/selections`, configuredCharacterParams(character))
-      .then(response => response.json())
-      // .then(resp => console.log(resp));
-      .then(resp => updateUserSelectionList(resp));
+    const characterSet = api.post(`/selections`, configuredCharacterParams(character))
+    .then(resp => updateUserSelectionList(resp));
   };
 
 
@@ -99,12 +95,16 @@ function updateUserSelectionList(input) {
   let newCharacter = newSelection.character;
   
   
-  newOption.setAttribute('character_id', newSelection.character_id);
-  newOption.setAttribute('selection_id', newSelection.id);
-  newOption.setAttribute('class', 'select-character character-btn');
-  newOption.innerText = `${newCharacter.name}`;
-  setCharacterSheetAccess(newOption, newCharacter);
-  nameList.insertBefore(newOption, nameList.lastChild);
+  newFunction();
+
+  function newFunction() {
+    newOption.setAttribute('character_id', newSelection.character_id);
+    newOption.setAttribute('selection_id', newSelection.id);
+    newOption.setAttribute('class', 'select-character character-btn');
+    newOption.innerText = `${newCharacter.name}`;
+    setCharacterSheetAccess(newOption, newCharacter);
+    nameList.insertBefore(newOption, nameList.lastChild);
+  }
 }
 
 
@@ -128,9 +128,9 @@ function handleOnSelectionDelete() {
   var deleteButton = document.getElementById("character-delete");
   deleteButton.addEventListener('click', function(){
     var selectionId = deleteButton.getAttribute('value');
-    fetch(`http://localhost:3000/selections/${selectionId}`, configuredDeleteSelectionParams(selectionId))
-      .then(response => response.json())
-      .then(resp => deleteSelection(resp));
+   
+    const deletedSeletion = api.post(`/selections/${selectionId}`,configuredDeleteSelectionParams(selectionId))
+    .then(resp => deleteSelection(resp));
   });
 }
 

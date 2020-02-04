@@ -1,5 +1,5 @@
 console.log('JS being Read.')
-
+const api = new ApiAdapter;
 const BASE_URL = "http://localhost:3000"
 var USER;
 
@@ -37,11 +37,10 @@ function selectSeriesOnSubmit() {
       }
 
       element.setAttribute("class", "series-btn-active");
-
       let buttonValue = this.getAttribute('value')
-      fetch(`http://localhost:3000/series/${buttonValue}`)
-        .then(response => response.json())
-        .then(series => retreiveShow(series));
+     
+      const seriesSet = api.get(`/series/${buttonValue}`)
+      .then(series => retreiveShow(series));
 
     });
   };

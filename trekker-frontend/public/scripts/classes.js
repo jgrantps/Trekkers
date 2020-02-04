@@ -20,6 +20,21 @@ class User {
     filterSelectionByCharacterName(i) {
         return this.selections.filter(element => element.character.name === i);
     }
+    refreshSelectionList() {
+        const nameList = document.getElementById('saved-name-list');
+        
+        
+        var newOption = document.createElement('a');
+
+        newOption.setAttribute('character_id', newSelection.character_id);
+        newOption.setAttribute('selection_id', newSelection.id);
+        newOption.setAttribute('class', 'select-character character-btn');
+        newOption.innerText = `${newCharacter.name}`;
+        setCharacterSheetAccess(newOption, newCharacter);
+        nameList.insertBefore(newOption, nameList.lastChild);
+
+
+    }
 }
  
 let includedSelections = [];
@@ -31,7 +46,6 @@ class Selection {
        
         this.character = (USER.characters.find(element => element.id === this.character_id)) ? (USER.characters.find(element => element.id === this.character_id)) : new Character(input.character)
         this.user = USER  
-        // ^^ USER is a global variable and is USER = new User(input.data)   
         this.save();
     }     
     save() {
