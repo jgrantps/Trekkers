@@ -19,10 +19,10 @@ function setSeriesImage(image) {
 function retreiveCharacters(characterSet) {
   var collectionDiv = document.getElementById('character-select');
   collectionDiv.innerHTML = `<option value="default"> Select A Character </option>`
-  var characterCollection = [];
 
   for (element of characterSet) {
-    let newCharacter = new Character(element);
+    let foundCharacter;
+    let newCharacter = (foundCharacter = USER.characters.find(character => character.id == element.id)) ? foundCharacter : new Character(element);
     renderCharacterDropDown(newCharacter);
   }
 };

@@ -2,22 +2,24 @@
 
 class User {
     constructor(input) {
+       var  includedSelections = []
+       this.input = input
         this.id = input.data.id
         this.name = input.data.attributes.name
         
-            }       
+        this.selections = (function() {
+            includedSelections = [];
+            var selectionSet = input.data.attributes.selections;
+            
+            for (let element of selectionSet) {
+               let selection = new Selection(element);
+                includedSelections.push(selection)
+            }            
+            return includedSelections
+        })(input);
+    }      
     get characters() {
        return Character.allIncludedCharacters;
-    }
-
-    get selections() {
-       var selectionSet = input.data.attributes.selections
-       includedSelections = []
-       for (element in selectionSet) {
-           selection = new Selection(element)
-           includedSelections.push(selection)
-       } 
-       return includedSelections;
     }
 
     filterCharacterByName(i) {
@@ -26,36 +28,17 @@ class User {
     filterSelectionByCharacterName(i) {
         return this.selections.filter(element => element.character.name === i);
     }
-    refreshSelectionList() {
-        const nameList = document.getElementById('saved-name-list');
-        while (nameList.firstChild) {
-            nameList.removeChild(namelist.firstChild);
-        }
-        //^^ delete all items in the list for full restart.
-
-
-        var newOption = document.createElement('a');
-
-        newOption.setAttribute('character_id', newSelection.character_id);
-        newOption.setAttribute('selection_id', newSelection.id);
-        newOption.setAttribute('class', 'select-character character-btn');
-        newOption.innerText = `${newCharacter.name}`;
-        setCharacterSheetAccess(newOption, newCharacter);
-        nameList.insertBefore(newOption, nameList.lastChild);
-
-
-    }
 }
  
 let includedSelections = [];
 class Selection {
     constructor(input) {
+        let existingCharacter;
+    
         this.id = input.id;
         this.user_id = input.user_id;
         this.character_id = input.character_id;
-       
-        this.character = (USER.characters.find(element => element.id === this.character_id)) ? (USER.characters.find(element => element.id === this.character_id)) : new Character(input.character)
-        this.user = USER  
+        this.character = (existingCharacter = includedCharacters.find(element => element.id === input.character_id)) ? existingCharacter : new Character(input.character);
         this.save();
     }     
     save() {
