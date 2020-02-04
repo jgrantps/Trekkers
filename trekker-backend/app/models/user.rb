@@ -16,7 +16,7 @@ class User < ApplicationRecord
 
   def build_selections_params
     self.selections.map do |selection|
-    {"id" => selection.id, "user_id" => self.id, "character_id" => selection.character.id, "character" => {"id" => selection.character.id, "name" => selection.character.name, "description" => selection.character.description, "image_URL" => selection.character.image_URL}}
+    {"id" => selection.id, "user_id" => self.id, "character_id" => selection.character.id, "character" => {"id" => selection.character.id, "name" => selection.character.name, "description" => selection.character.description, "image_URL" => selection.character.image_URL, "series_id" => selection.character.series.id, "series" => selection.character.series}}
      
     
   end

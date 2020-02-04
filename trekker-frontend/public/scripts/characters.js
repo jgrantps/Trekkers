@@ -1,7 +1,30 @@
 // Contains all functions for manipulating Character objects.
 
+function selectSeriesOnSubmit() {
+  var seriesButtons = document.getElementsByClassName("series-btn");
+
+  for (let element of seriesButtons) {
+    element.addEventListener("click", function () {
+      var activeButtons = document.getElementsByClassName("series-btn-active")
+
+      for (let activeButton of activeButtons) {
+        activeButton.setAttribute("class", "series-btn");
+      }
+      //^^ resets previously selected button style to non-active //
+      element.setAttribute("class", "series-btn-active");
+      //^^ sets clicked button styl to 'active' //
+
+      let buttonValue = this.getAttribute('value')
+      
+      const seriesSet = api.get(`/series/${buttonValue}`)
+      .then(series => retreiveShow(series));
+
+    });
+  };
+};
 
 function retreiveShow(show) {
+  console.log(show)
   var characterSet = show.data.attributes.characters;
   var seriesImage = show.data.attributes.image_URL;
 
@@ -45,52 +68,17 @@ function handleOnCharacterSubmit() {
     
     let selectedCharacterId = e.target['character-select'].value;
     const characterFetch = api.get(`/characters/${selectedCharacterId}`)
-      .then(character => postCharacter(character));
+      .then(character => addCharacterToUser(character));
   });
-}
-
-
-function postCharacter(element) {
-  var cName = element.data.attributes.name;
-  const nameList = document.getElementById('saved-name-list')
-  addCharacterToUser(element)
 }
 
 
 // fetch function to turn selected character in the the user's selection.
 function addCharacterToUser(character) {
     const characterSet = api.post(`/selections`, config.addCharacter(character))
-    .then(resp => updateUserSelectionList(resp));
+    .then(resp => refreshPage(resp));
   };
 
-
-function updateUserSelectionList(input) {
-  
-  const nameList = document.getElementById('saved-name-list');
-  var newOption = document.createElement('a');
-  let newSelection;
-
-  if (input.character_id === undefined) {
-    newSelection = new Selection(input.selection);
-    console.log(newSelection)
-  }else{
-    newSelection = input;
-  }
-
-  let newCharacter = newSelection.character;
-  
-  
-  newFunction();
-
-  function newFunction() {
-    newOption.setAttribute('character_id', newSelection.character_id);
-    newOption.setAttribute('selection_id', newSelection.id);
-    newOption.setAttribute('class', 'select-character character-btn');
-    newOption.innerText = `${newCharacter.name}`;
-    setCharacterSheetAccess(newOption, newCharacter);
-    nameList.insertBefore(newOption, nameList.lastChild);
-  }
-}
 
 
 function setCharacterSheetAccess(newOption, newCharacter) {
@@ -104,17 +92,15 @@ function setCharacterSheetAccess(newOption, newCharacter) {
     
     deleteButton.setAttribute('value', parseInt(newOption.getAttribute('selection_id')))
     imageSpot.setAttribute("src", newCharacter.image_URL);
-    // seriesSpot.innerText = "enter the series here"
     descriptionSpot.innerHTML = newCharacter.description;
   })
 }
 
 function handleOnSelectionDelete() {
-  var deleteButton = document.getElementById("character-delete");
+  const deleteButton = document.getElementById("character-delete");
   deleteButton.addEventListener('click', function(){
     var selectionId = deleteButton.getAttribute('value');
-   
-    const deletedSeletion = api.post(`/selections/${selectionId}`, config.deleteSelection(selectionId))
+    const sendDeleteRequest = api.post(`/selections/${selectionId}`, config.deleteSelection(selectionId))
     .then(resp => refreshPage(resp));
   });
 }
@@ -122,8 +108,4 @@ function handleOnSelectionDelete() {
 function refreshPage(input) {
 USER = new User(input)
 USER.refreshUserDashboard
-  // deletedSelection = resp.id;
-  // var selection = USER.selections.find(element => element.id == deletedSelection);
-  // selection.delete    
-  //  loadCharactersAndSelections(USER)
 }

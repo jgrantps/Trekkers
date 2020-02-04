@@ -1,5 +1,5 @@
 class ConfigAdapter {
-
+//^^ handles all params configurations for AJAX fetch requests...
     deleteSelection(id) {
     var deletionPackage = {USER, id}
     

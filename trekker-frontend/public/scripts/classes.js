@@ -41,13 +41,13 @@ class User {
         while (nameList.firstChild) {
             nameList.removeChild(nameList.firstChild);
           }
+        //^^ Clears the DOM.
 
         var selectionSet = this.selections
-        //refreshes the list of User's Selections
-        // use 'this' keyword to access elements
+        //^^ resets the list of User's Selections
         
-        for (selection of selectionSet) {
-            // "selection" is the variable being passed in
+        
+        for (let selection of selectionSet) {
             var newOption = document.createElement('a');
             let newCharacter = selection.character;
                
@@ -91,14 +91,7 @@ class Selection {
         let selection = includedSelections.find(element => element.id === ID);
         return selection;
     }
-    
-
 }    
-
-
-
-
-
 
 
 
@@ -106,12 +99,14 @@ class Selection {
 let includedCharacters = []
 class Character {
     constructor(characterData) {
+        console.log(characterData)
+        let existingSeries;
       this.id = characterData.id;
       this.name = characterData.name;
       this.description = characterData.description;
       this.image_URL = characterData.image_URL;
       this.series_id = characterData.series_id;
-      this.series = includedSeries.find( element => element.id === this.series_id );
+      this.series = (existingSeries = includedSeries.find(element => element.id === this.series_id)) ? existingSeries : new Series(characterData.series);
       this.save();
     }
     save() {
@@ -121,9 +116,6 @@ class Character {
         return includedCharacters;
     }
   }
-
-
-
 
 let includedSeries = []
 class Series {

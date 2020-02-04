@@ -11,7 +11,7 @@ class SelectionsController < ApplicationController
         new_selection = Selection.new(:user_id => currentUser.id, :character_id => selectionParams)
         character = Character.find(selectionParams)
         if new_selection.save 
-            render json: {"message": "success", "selection": new_selection, "character": character}
+            render json: UserSerializer.new(currentUser)
         else
             render json: {"message": "error!"}
         end
