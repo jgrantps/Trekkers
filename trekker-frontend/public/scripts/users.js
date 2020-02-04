@@ -35,8 +35,8 @@ function processLogin(user) {
     alertButton.innerText = user.message
   }
   else {
-    USER = new User(user.data);
-    
+    USER = new User(user);
+    console.log(user)
     alertButton.setAttribute("class", "hidden")
     alertButton.innerText = ""
     showDashboard(user); 

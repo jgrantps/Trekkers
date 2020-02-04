@@ -2,8 +2,8 @@
 
 class User {
     constructor(input) {
-        this.id = input.id
-        this.name = input.attributes.name
+        this.id = input.data.id
+        this.name = input.data.attributes.name
         
             }       
     get characters() {
@@ -11,7 +11,13 @@ class User {
     }
 
     get selections() {
-        return Selection.allIncludedSelections;
+       var selectionSet = input.data.attributes.selections
+       includedSelections = []
+       for (element in selectionSet) {
+           selection = new Selection(element)
+           includedSelections.push(selection)
+       } 
+       return includedSelections;
     }
 
     filterCharacterByName(i) {
@@ -22,8 +28,12 @@ class User {
     }
     refreshSelectionList() {
         const nameList = document.getElementById('saved-name-list');
-        
-        
+        while (nameList.firstChild) {
+            nameList.removeChild(namelist.firstChild);
+        }
+        //^^ delete all items in the list for full restart.
+
+
         var newOption = document.createElement('a');
 
         newOption.setAttribute('character_id', newSelection.character_id);

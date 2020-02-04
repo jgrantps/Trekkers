@@ -13,3 +13,4 @@ class ApiAdapter {
         .then(r => r.json())
     }
 }
+
