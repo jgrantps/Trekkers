@@ -1,27 +1,10 @@
-
-function configurationParams() {
-  
-  const submittedName = document.getElementById("login-name").value
-  const submittedPassword = document.getElementById("login-password").value
-  const submitParams = {name: submittedName, password: submittedPassword}
-  const configurationObject = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "Accept": "application/json"
-    },
-    body: JSON.stringify(submitParams)
-  }
-  return configurationObject;
-};
-
 function handleOnUsersLogIn() {
   
   const logInBtn = document.getElementById("login-btn");
   logInBtn.addEventListener('click', function(e) {
     e.preventDefault();
     e.stopPropagation();
-    const login = api.post(`/login`, configurationParams())
+    const login = api.post(`/login`, config.access())
     .then(user => processLogin(user));
     
     
@@ -62,7 +45,7 @@ function handleOnUserSignup() {
     e.preventDefault();
     e.stopPropagation();
 
-    const signUp = api.post(`/users`, configurationParams())
+    const signUp = api.post(`/users`, config.access())
     .then(user => processSignUp(user));
   });
 };
@@ -89,7 +72,7 @@ function handleOnUserLogOut() {
   logOutBtn.addEventListener('click', function(e) {
     e.preventDefault();
     e.stopPropagation();
-    const logOut = api.post(`/logout`, configurationParams())
+    const logOut = api.post(`/logout`, config.access())
     .then(user => logoutScreen(user));
   });
 }

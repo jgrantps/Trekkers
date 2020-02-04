@@ -56,25 +56,10 @@ function postCharacter(element) {
   addCharacterToUser(element)
 }
 
-function configuredCharacterParams(character) {
-  var characterPackage = {character, USER}
-  
-  const configurationObject = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "Accept": "application/json"
-    },
-    body: JSON.stringify(characterPackage)
-  }
-  
-  return configurationObject;
-};
-
 
 // fetch function to turn selected character in the the user's selection.
 function addCharacterToUser(character) {
-    const characterSet = api.post(`/selections`, configuredCharacterParams(character))
+    const characterSet = api.post(`/selections`, config.addCharacter(character))
     .then(resp => updateUserSelectionList(resp));
   };
 
@@ -129,25 +114,10 @@ function handleOnSelectionDelete() {
   deleteButton.addEventListener('click', function(){
     var selectionId = deleteButton.getAttribute('value');
    
-    const deletedSeletion = api.post(`/selections/${selectionId}`,configuredDeleteSelectionParams(selectionId))
+    const deletedSeletion = api.post(`/selections/${selectionId}`, config.deleteSelection(selectionId))
     .then(resp => deleteSelection(resp));
   });
 }
-
-function configuredDeleteSelectionParams(id) {
-  var deletionPackage = {USER, id}
-  
-  const configurationObject = {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-      "Accept": "application/json"
-    },
-    body: JSON.stringify(deletionPackage)
-  }
-  
-  return configurationObject;
-};
 
 function deleteSelection(resp) {
   console.log(resp)

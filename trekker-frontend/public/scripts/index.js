@@ -1,5 +1,6 @@
 console.log('JS being Read.')
 const api = new ApiAdapter;
+const config = new ConfigAdapter;
 const BASE_URL = "http://localhost:3000"
 var USER;
 
