@@ -104,5 +104,4 @@ function loadCharactersAndSelections(input) {
   for (selection of selections) {
      updateUserSelectionList(selection);
   };
-  console.log(USER.selections)
 }

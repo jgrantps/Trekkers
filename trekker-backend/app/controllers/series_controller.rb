@@ -1,7 +1,5 @@
 class SeriesController < ApplicationController
 
-
-
     def index
         raise params.inspect
     end

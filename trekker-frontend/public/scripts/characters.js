@@ -65,7 +65,7 @@ function addCharacterToUser(character) {
 
 
 function updateUserSelectionList(input) {
-  console.log(input)
+  
   const nameList = document.getElementById('saved-name-list');
   var newOption = document.createElement('a');
   let newSelection;
@@ -115,14 +115,15 @@ function handleOnSelectionDelete() {
     var selectionId = deleteButton.getAttribute('value');
    
     const deletedSeletion = api.post(`/selections/${selectionId}`, config.deleteSelection(selectionId))
-    .then(resp => deleteSelection(resp));
+    .then(resp => refreshPage(resp));
   });
 }
 
-function deleteSelection(resp) {
-  console.log(resp)
-  deletedSelection = resp.id;
-  var selection = USER.selections.find(element => element.id == deletedSelection);
-  selection.delete    
-   loadCharactersAndSelections(USER)
+function refreshPage(input) {
+USER = new User(input)
+USER.refreshUserDashboard
+  // deletedSelection = resp.id;
+  // var selection = USER.selections.find(element => element.id == deletedSelection);
+  // selection.delete    
+  //  loadCharactersAndSelections(USER)
 }

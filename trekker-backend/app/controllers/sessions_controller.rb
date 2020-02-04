@@ -5,8 +5,7 @@ class SessionsController < ApplicationController
   def create
     
     user = User.find_by(sessionsParams)
-    # if user && user.authenticate(sessionsParams[:password])
-    #   session[:user_id] = user.id
+    
     if !!user
        
      render json: UserSerializer.new(user)

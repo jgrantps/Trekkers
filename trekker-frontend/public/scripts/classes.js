@@ -22,11 +22,43 @@ class User {
        return Character.allIncludedCharacters;
     }
 
+    findSelection(ID) {
+        let selection = includedSelections.find(element => element.id === ID);
+        return selection;
+    }
+
     filterCharacterByName(i) {
         return this.characters.filter(element => element.name === i)
     }
+
     filterSelectionByCharacterName(i) {
         return this.selections.filter(element => element.character.name === i);
+    }
+
+    get refreshUserDashboard() {
+        const nameList = document.getElementById('saved-name-list');        
+        
+        while (nameList.firstChild) {
+            nameList.removeChild(nameList.firstChild);
+          }
+
+        var selectionSet = this.selections
+        //refreshes the list of User's Selections
+        // use 'this' keyword to access elements
+        
+        for (selection of selectionSet) {
+            // "selection" is the variable being passed in
+            var newOption = document.createElement('a');
+            let newCharacter = selection.character;
+               
+                newOption.setAttribute('character_id', selection.character_id);
+                newOption.setAttribute('selection_id', selection.id);
+                newOption.setAttribute('class', 'select-character character-btn');
+                newOption.innerText = `${newCharacter.name}`;
+                setCharacterSheetAccess(newOption, newCharacter);
+                nameList.insertBefore(newOption, nameList.lastChild);
+            
+        }
     }
 }
  
@@ -51,8 +83,24 @@ class Selection {
     get delete() {
         var index = includedSelections.indexOf(this);
         includedSelections.splice(index, 1);
-    }    
+        var userSelectionIndex = User.selections.indexOf(this)
+        User.selections.splice(index, 1)
+    }   
+
+    static find(ID) {
+        let selection = includedSelections.find(element => element.id === ID);
+        return selection;
+    }
+    
+
 }    
+
+
+
+
+
+
+
 
 
 let includedCharacters = []

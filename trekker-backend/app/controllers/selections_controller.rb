@@ -26,7 +26,7 @@ class SelectionsController < ApplicationController
         selection = Selection.find(destroySelectionParams[:id])
         deadId = selection.id
         if selection.delete
-            render json:{"message": "Success!", "id": deadId}
+            render json: UserSerializer.new(currentUser)
         else
             render json:{"message": "Not able to destroy!"}
         end
