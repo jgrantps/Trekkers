@@ -9,7 +9,6 @@ function processLogin(user) {
   else {
     USER = new User(user)
     USER.refreshUserDashboard
-  console.log(USER)
     alertButton.setAttribute("class", "hidden")
     alertButton.innerText = ""
     showDashboard(USER); 

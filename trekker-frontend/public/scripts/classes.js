@@ -99,7 +99,6 @@ class Selection {
 let includedCharacters = []
 class Character {
     constructor(characterData) {
-        console.log(characterData)
         let existingSeries;
       this.id = characterData.id;
       this.name = characterData.name;
@@ -120,6 +119,7 @@ class Character {
 let includedSeries = []
 class Series {
     constructor(seriesData) {
+        console.log(seriesData)
         this.id = seriesData.id
         this.title = seriesData.title;
         this.image_URL = seriesData.image_URL;

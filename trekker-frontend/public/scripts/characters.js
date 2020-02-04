@@ -24,7 +24,6 @@ function selectSeriesOnSubmit() {
 };
 
 function retreiveShow(show) {
-  console.log(show)
   var characterSet = show.data.attributes.characters;
   var seriesImage = show.data.attributes.image_URL;
 
@@ -44,8 +43,8 @@ function retreiveCharacters(characterSet) {
   collectionDiv.innerHTML = `<option value="default"> Select A Character </option>`
 
   for (element of characterSet) {
-    let foundCharacter;
-    let newCharacter = (foundCharacter = USER.characters.find(character => character.id == element.id)) ? foundCharacter : new Character(element);
+
+    let newCharacter = checkFor.character(element)
     renderCharacterDropDown(newCharacter);
   }
 };
@@ -92,6 +91,7 @@ function setCharacterSheetAccess(newOption, newCharacter) {
     
     deleteButton.setAttribute('value', parseInt(newOption.getAttribute('selection_id')))
     imageSpot.setAttribute("src", newCharacter.image_URL);
+    seriesSpot.innerText = newCharacter.series.title;
     descriptionSpot.innerHTML = newCharacter.description;
   })
 }

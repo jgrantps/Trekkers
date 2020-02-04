@@ -11,7 +11,7 @@ class UserSerializer
   end
 
   attribute :series do |object|
-    object.series_unique
+    Series.all
   end
 
 
