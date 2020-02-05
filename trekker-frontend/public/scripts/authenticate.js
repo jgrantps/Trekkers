@@ -1,5 +1,4 @@
 class AuthenticationAdapter {
-    s
     signup() {
         const signUpBtn = document.getElementById("signup-btn")
         signUpBtn.addEventListener('click', function (e) {
@@ -7,7 +6,7 @@ class AuthenticationAdapter {
           e.stopPropagation();
       
           const signUp = api.post(`/users`, config.access())
-          .then(user => processSignUp(user));
+          .then(user => process.signUp(user));
         });
     };
 
@@ -17,11 +16,11 @@ class AuthenticationAdapter {
           e.preventDefault();
           e.stopPropagation();
           const login = api.post(`/login`, config.access())
-          .then(user => processLogin(user));
+          .then(user => process.login(user));
           
           
         });
-    }
+    };
 
     logOut() {
         const logOutBtn = document.getElementById("logout-btn");
@@ -29,8 +28,8 @@ class AuthenticationAdapter {
             e.preventDefault();
             e.stopPropagation();
             const logOut = api.post(`/logout`, config.access())
-            .then(user => logoutScreen(user));
+            .then(user => process.logout(user));
         });
-    }
+    };
 
 }

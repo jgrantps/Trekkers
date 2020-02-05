@@ -9,6 +9,7 @@ class ApiAdapter {
     }
 
     post(URL, configurationObject) {
+        
         return fetch(this.baseUrl + URL, configurationObject)
         .then(r => r.json())
     }

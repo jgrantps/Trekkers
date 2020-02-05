@@ -3,6 +3,7 @@
 class User {
     constructor(input) {
        var  includedSelections = []
+       var  includedSeries = []
        this.input = input
         this.id = input.data.id
         this.name = input.data.attributes.name
@@ -17,6 +18,18 @@ class User {
             }            
             return includedSelections
         })(input);
+
+        this.series = (function() {
+            includedSeries = [];
+            var seriesSet = input.data.attributes.series;
+
+            for (let element of seriesSet) {
+                let series = new Series(element);
+                includedSeries.push(series);
+            }
+            return includedSeries;
+
+        })();
     }      
     get characters() {
        return Character.allIncludedCharacters;

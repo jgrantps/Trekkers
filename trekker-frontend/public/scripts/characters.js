@@ -90,10 +90,25 @@ function setCharacterSheetAccess(newOption, newCharacter) {
     nameSpot.innerText = newCharacter.name;
     
     deleteButton.setAttribute('value', parseInt(newOption.getAttribute('selection_id')))
+    deleteButton.setAttribute('class', "submit-btn")
     imageSpot.setAttribute("src", newCharacter.image_URL);
     seriesSpot.innerText = newCharacter.series.title;
     descriptionSpot.innerHTML = newCharacter.description;
   })
+}
+
+function setPromptScreen() {
+    var imageSpot = document.getElementById("character-image") 
+    var nameSpot = document.getElementById("character-sheet-name")
+    var seriesSpot = document.getElementById("character-sheet-series")
+    var descriptionSpot = document.getElementById("character-sheet-description")
+    var deleteButton = document.getElementById("character-delete")
+    nameSpot.innerText = "Select a Character";
+    
+    deleteButton.setAttribute('class', "hidden")
+    imageSpot.setAttribute("src", "https://upload.wikimedia.org/wikipedia/en/b/bb/Starfleet_command_emblem.png");
+    seriesSpot.innerText = "";
+    descriptionSpot.innerHTML = "";
 }
 
 function handleOnSelectionDelete() {
@@ -106,6 +121,7 @@ function handleOnSelectionDelete() {
 }
 
 function refreshPage(input) {
-USER = new User(input)
-USER.refreshUserDashboard
+  USER = new User(input)
+  USER.refreshUserDashboard
+  setPromptScreen();
 }
