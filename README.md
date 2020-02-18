@@ -1,6 +1,6 @@
-# Trekker
+# Trekkers
 
-Trekker is a single-page javascript-powered app that allows users to sign up and build collections of the bridge crew of various Star Trek series.  The app connects via JSON to a Ruby on Rails backend API, where seed data for the main characters of the four primary Star Trek shows are held.
+Trekkers is a single-page javascript-powered app that allows users to sign up and build collections of the bridge crew of various Star Trek series.  The app connects via JSON to a Ruby on Rails backend API, where seed data for the main characters of the four primary Star Trek shows are held.
 
 To install and run Trekkers, simply:
 
