@@ -12,7 +12,7 @@ class ProcessorAdapter {
           alertButton.setAttribute("class", "hidden")
           alertButton.innerText = ""
           this.dashboard(USER); 
-          setPromptScreen();
+          action.setPromptScreen();
         }
       }
 
@@ -28,7 +28,7 @@ class ProcessorAdapter {
           alertButton.setAttribute("class", "hidden")
           alertButton.innerText = ""
           this.dashboard(USER);
-          setPromptScreen(); 
+          action.setPromptScreen(); 
         }
       }
 
