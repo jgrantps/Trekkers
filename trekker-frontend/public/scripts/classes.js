@@ -68,7 +68,7 @@ class User {
                 newOption.setAttribute('selection_id', selection.id);
                 newOption.setAttribute('class', 'select-character character-btn');
                 newOption.innerText = `${newCharacter.name}`;
-                setCharacterSheetAccess(newOption, newCharacter);
+                action.setCharacterSheetAccess(newOption, newCharacter);
                 nameList.insertBefore(newOption, nameList.lastChild);
             
         }
