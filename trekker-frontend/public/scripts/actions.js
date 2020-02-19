@@ -1,5 +1,5 @@
 class ActionsAdapter {
-   
+    
     selectSeriesOnSubmit() {
         var seriesButtons = document.getElementsByClassName("series-btn");
 
@@ -120,5 +120,38 @@ class ActionsAdapter {
         action.setPromptScreen();
     }
 
+
+    liveCode() {
+        const liveCodebtn = document.getElementById("live-code");
+        liveCodebtn.addEventListener('click', function() {
+            return fetch(api.baseUrl+'/series/2')
+            .then(r => r.json())
+            .then(r=> {
+                let myArray = r.data.attributes.characters;
+                
+                myArray.sort(function(a, b) {
+                    var nameA = a.name.toUpperCase(); // ignore upper and lowercase
+                    var nameB = b.name.toUpperCase(); // ignore upper and lowercase
+                    if (nameA < nameB) {
+                      return -1;
+                    }
+                    if (nameA > nameB) {
+                      return 1;
+                    }
+                  
+                    // names must be equal
+                    return 0;
+                  });
+
+                  console.log(myArray);
+
+
+
+
+
+               
+            });
+        });
+    }
 
 }

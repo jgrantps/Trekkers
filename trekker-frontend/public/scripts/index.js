@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
   action.selectSeriesOnSubmit();
   action.handleOnCharacterSubmit();
   action.handleOnSelectionDelete();
+  action.liveCode();
   authenticate.logIn();
   authenticate.signup();
   authenticate.logOut();
