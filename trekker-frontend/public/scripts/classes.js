@@ -8,16 +8,17 @@ class User {
         this.id = input.data.id
         this.name = input.data.attributes.name
         
-        this.selections = (function() {
+        this.selections = (function(selections) {
             includedSelections = [];
-            var selectionSet = input.data.attributes.selections;
             
-            for (let element of selectionSet) {
+            for (let element of selections) {
                let selection = new Selection(element);
                 includedSelections.push(selection)
             }            
             return includedSelections
-        })(input);
+        })(input.data.attributes.selections);
+        //^^ My IIFE-- used to autmatically prepopulate the selections list with associated selections objects of any given user from the promise object.  
+        //   This allows for the DOM manipulation to reference Selections objects from the the User Class without needing to invoke any functions elsewhere.
 
         this.series = (function() {
             includedSeries = [];
@@ -132,7 +133,6 @@ class Character {
 let includedSeries = []
 class Series {
     constructor(seriesData) {
-        console.log(seriesData)
         this.id = seriesData.id
         this.title = seriesData.title;
         this.image_URL = seriesData.image_URL;

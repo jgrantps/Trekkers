@@ -138,20 +138,22 @@ class ActionsAdapter {
                     if (nameA > nameB) {
                       return 1;
                     }
-                  
-                    // names must be equal
                     return 0;
                   });
-
-                  console.log(myArray);
-
-
-
-
-
-               
+              //  myArray is now sorted!
+              // console.log(myArray)
+              action.liveCodeList(myArray)
             });
         });
     }
 
+    liveCodeList(argument) {
+      var idContainer = document.getElementById("saved-name-list")
+      argument.map(character => {
+        let node = document.createElement("A");
+        node.innerText = character.name;
+        node.setAttribute("class", "select-character character-btn")
+        idContainer.append(node);
+      })
+    }
 }
